@@ -28,7 +28,8 @@ namespace is4
             services.AddIdentityServer()
                 .AddDeveloperSigningCredential()
                 .AddInMemoryApiResources(Config.GetApiResources())
-                .AddInMemoryClients(Config.GetClients());
+                .AddInMemoryClients(Config.GetClients())
+                .AddTestUsers(Config.GetUsers());
             // services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_1);
         }
 

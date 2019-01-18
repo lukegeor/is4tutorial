@@ -20,17 +20,27 @@ namespace consoleclient
                 return;
             }
 
-            var tokenResponse = await client.RequestClientCredentialsTokenAsync(new ClientCredentialsTokenRequest()
+            /* var tokenResponse = await client.RequestClientCredentialsTokenAsync(new ClientCredentialsTokenRequest()
             {
                 Address = disco.TokenEndpoint,
                 ClientId = "client",
                 ClientSecret = "secret",
                 Scope = "api1"
+            });*/
+
+            var tokenResponse = await client.RequestPasswordTokenAsync(new PasswordTokenRequest()
+            {
+                Address = disco.TokenEndpoint,
+                ClientId = "ro.client",
+                ClientSecret = "secret",
+                Scope = "api1",
+                UserName = "alice",
+                Password = "password"
             });
 
             if (tokenResponse.IsError)
             {
-                Console.WriteLine(tokenResponse.Error);
+                Console.WriteLine("Token response error: " + tokenResponse.Error);
                 return;
             }
 
@@ -43,13 +53,15 @@ namespace consoleclient
             var response = await apiClient.GetAsync("http://localhost:5010/identity");
             if (!response.IsSuccessStatusCode)
             {
-                Console.WriteLine(response.StatusCode);
+                Console.WriteLine("Client request error: " + response.StatusCode);
             }
             else
             {
                 var content = await response.Content.ReadAsStringAsync();
                 Console.WriteLine(JArray.Parse(content));
             }
+
+            
         }
     }
 }
