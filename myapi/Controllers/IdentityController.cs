@@ -1,7 +1,11 @@
-﻿namespace myapi.Controllers
+﻿using System.Linq;
+using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc;
+
+namespace myapi.Controllers
 {
     [Route("identity")]
-    [ApiController]
+    [Authorize]
     public class IdentityController : ControllerBase
     {
         [HttpGet]
