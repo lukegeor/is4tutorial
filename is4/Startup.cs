@@ -41,8 +41,8 @@ namespace is4
                 {
                     options.SignInScheme = IdentityServerConstants.ExternalCookieAuthenticationScheme;
 
-                    options.ClientId = "144060671016-i31pqlcc77qchns0aa3dsu86bmlh8sgp.apps.googleusercontent.com";
-                    options.ClientSecret = "-x-YDDA0jyrzRu9LG2PZl5ND";
+                    options.ClientId = Configuration["GoogleApiClientId"];
+                    options.ClientSecret = Configuration["GoogleApiClientSecret"];
                 })
                 .AddOpenIdConnect("oidc", "OpenID Connect", options =>
                 {
