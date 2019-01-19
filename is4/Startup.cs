@@ -48,6 +48,7 @@ namespace is4
                 {
                     options.SignInScheme = IdentityServerConstants.ExternalCookieAuthenticationScheme;
                     options.SignOutScheme = IdentityServerConstants.SignoutScheme;
+                    options.SaveTokens = true;
 
                     options.Authority = "https://demo.identityserver.io/";
                     options.ClientId = "implicit";

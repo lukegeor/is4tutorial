@@ -29,13 +29,13 @@ namespace myapi
             // services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_2);
 
             services.AddAuthentication("Bearer")
-                .AddIdentityServerAuthentication(options =>
+                .AddJwtBearer("Bearer", options =>
                 {
                     options.Authority = "http://localhost:5000";
                     options.RequireHttpsMetadata = false;
-                    options.ApiName = "api1";
-                });
-        }
+
+                    options.Audience = "api1";
+                });        }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
         public void Configure(IApplicationBuilder app, IHostingEnvironment env)

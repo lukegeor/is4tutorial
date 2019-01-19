@@ -38,7 +38,12 @@ namespace is4
                 {
                     ClientId = "mvc",
                     ClientName = "MVC Client",
-                    AllowedGrantTypes = GrantTypes.Implicit,
+                    AllowedGrantTypes = GrantTypes.Hybrid,
+
+                    ClientSecrets =
+                    {
+                        new Secret("secret".Sha256())
+                    },
 
                     RedirectUris = { "http://localhost:5020/signin-oidc" },
                     PostLogoutRedirectUris = { "http://localhost:5020/signout-callback-oidc" },
@@ -46,8 +51,10 @@ namespace is4
                     AllowedScopes =
                     {
                         IdentityServerConstants.StandardScopes.OpenId,
-                        IdentityServerConstants.StandardScopes.Profile
-                    }
+                        IdentityServerConstants.StandardScopes.Profile,
+                        "api1"
+                    },
+                    AllowOfflineAccess = true
                 }
             };
         }
